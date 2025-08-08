@@ -12,7 +12,7 @@ import { useStore } from "@/lib/store"
 export function GradeHoraria() {
   const { disciplinas, docentes, cursos, alocacoes } = useStore()
 
-  const [filtroTipo, setFiltroTipo] = useState<"curso" | "docente" | "geral">("curso")
+  const [filtroTipo, setFiltroTipo] = useState<"curso" | "docente" | "geral">("geral")
   const [cursoSelecionado, setCursoSelecionado] = useState("")
   const [semestreSelecionado, setSemestreSelecionado] = useState("")
   const [docenteSelecionado, setDocenteSelecionado] = useState("")
