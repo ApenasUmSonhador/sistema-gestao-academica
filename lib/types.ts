@@ -27,8 +27,6 @@ export interface Alocacao {
   disciplinaId: string
   docenteId: string
   diasSemana: string[]
-  dataInicio: string
-  dataFim: string
   horarioInicio: string
   horarioFim: string
   cargaHorariaDiaria: number

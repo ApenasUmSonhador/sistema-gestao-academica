@@ -33,8 +33,6 @@ export function AlocacaoDisciplinas() {
     diasSemana: [],
     horarioInicio: "",
     horarioFim: "",
-    dataInicio: "",
-    dataFim: "",
     cargaHorariaDiaria: 0,
   })
 
@@ -58,8 +56,6 @@ export function AlocacaoDisciplinas() {
         diasSemana: [],
         horarioInicio: "",
         horarioFim: "",
-        dataInicio: "",
-        dataFim: "",
         cargaHorariaDiaria: 0,
       })
     }
@@ -81,21 +77,16 @@ export function AlocacaoDisciplinas() {
 
   const calcularTotalHoras = () => {
     if (
-      !dadosAlocacao.dataInicio ||
-      !dadosAlocacao.dataFim ||
       !dadosAlocacao.diasSemana?.length ||
       !dadosAlocacao.cargaHorariaDiaria
     ) {
       return 0
     }
 
-    const inicio = new Date(dadosAlocacao.dataInicio)
-    const fim = new Date(dadosAlocacao.dataFim)
-    const diffTime = Math.abs(fim.getTime() - inicio.getTime())
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
-    const semanas = Math.ceil(diffDays / 7)
+    const ch_diaria = dadosAlocacao.cargaHorariaDiaria
+    const dias_semana = dadosAlocacao.diasSemana.length
 
-    return semanas * dadosAlocacao.diasSemana.length * dadosAlocacao.cargaHorariaDiaria
+    return 16 * ch_diaria * dias_semana
   }
 
   const salvarAlocacao = () => {
@@ -113,8 +104,6 @@ export function AlocacaoDisciplinas() {
         disciplinaId: disciplinaSelecionada.id,
         docenteId: dadosAlocacao.docenteId!,
         diasSemana: dadosAlocacao.diasSemana!,
-        dataInicio: dadosAlocacao.dataInicio!,
-        dataFim: dadosAlocacao.dataFim!,
         horarioInicio: dadosAlocacao.horarioInicio!,
         horarioFim: dadosAlocacao.horarioFim!,
         cargaHorariaDiaria: dadosAlocacao.cargaHorariaDiaria!,
@@ -309,28 +298,6 @@ export function AlocacaoDisciplinas() {
                 ))}
               </div>
             </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="dataInicio">Data de Início</Label>
-                <Input
-                  id="dataInicio"
-                  type="date"
-                  value={dadosAlocacao.dataInicio}
-                  onChange={(e) => setDadosAlocacao({ ...dadosAlocacao, dataInicio: e.target.value })}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="dataFim">Data de Fim</Label>
-                <Input
-                  id="dataFim"
-                  type="date"
-                  value={dadosAlocacao.dataFim}
-                  onChange={(e) => setDadosAlocacao({ ...dadosAlocacao, dataFim: e.target.value })}
-                />
-              </div>
-            </div>
-
             <div className="grid grid-cols-3 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="horarioInicio">Horário Início</Label>
