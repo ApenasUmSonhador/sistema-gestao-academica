@@ -4,8 +4,9 @@ import { GeistMono } from 'geist/font/mono'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Gestão Academica',
+  title: 'Gestão Acadêmica',
   description: 'Sistema de Gestão Acadêmica para Coordenação do Curso de Educação Física da UFC',
+  creator: 'Arthur Vinicius Carneiro Nunes'
 }
 
 export default function RootLayout({
@@ -16,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <head>
-        <link rel="icon" href="/app/brasao.ico" />
+        <link rel="icon" href="./brasao.ico" />
         <style>{`
 html {
   font-family:${GeistSans.style.fontFamily};

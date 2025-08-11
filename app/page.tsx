@@ -19,7 +19,7 @@ export default function SistemaGestaoAcademica() {
       <div className="max-w-7xl mx-auto">
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">Sistema de Gestão Acadêmica</h1>
-          <p className="text-lg text-gray-600">Coordenação de Curso - Educação Física</p>
+          <p className="text-lg text-gray-600">Coordenação do Curso - Educação Física</p>
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
