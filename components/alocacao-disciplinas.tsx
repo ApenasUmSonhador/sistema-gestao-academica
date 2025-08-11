@@ -42,6 +42,12 @@ export function AlocacaoDisciplinas() {
 
   const semestresDisponiveis = [...new Set(disciplinas.map((d) => d.semestre))].sort()
 
+  const semestresFiltrados = (curso : any) => {
+    if (!curso) return semestresDisponiveis
+    const disciplinasDoCurso = disciplinas.filter((d) => d.curso === cursoSelecionado)
+    return [...new Set(disciplinasDoCurso.map((d) => d.semestre))].sort()
+  }
+
   const abrirDialogAlocacao = (disciplina: any) => {
     setDisciplinaSelecionada(disciplina)
 
@@ -173,7 +179,7 @@ export function AlocacaoDisciplinas() {
                   <SelectValue placeholder="Selecione o semestre" />
                 </SelectTrigger>
                 <SelectContent>
-                  {semestresDisponiveis.map((semestre) => (
+                  {semestresFiltrados(cursoSelecionado).map((semestre) => (
                     <SelectItem key={semestre} value={semestre}>
                       {semestre}º Semestre
                     </SelectItem>

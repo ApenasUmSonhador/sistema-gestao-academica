@@ -245,3 +245,29 @@ function horariosSeConflitam(inicio1: string, fim1: string, inicio2: string, fim
 
   return !(fim1Min <= inicio2Min || fim2Min <= inicio1Min)
 }
+
+export function exportarAlocacoesParaCSV(alocacoes: Alocacao[], docentes: Docente[], disciplinas: Disciplina[]): string {
+  const header = [
+    "Curso", "Semestre", "Componenete", "CH", "Natureza", "Código", "Docente", "Dias da Semana", "Horário Início", "Horário fim"
+  ].join(",")
+
+  const rows = alocacoes.map((a) => {
+    const disciplina = disciplinas.find((d) => d.id === a.disciplinaId)
+    const docente = docentes.find((d) => d.id === a.docenteId)
+
+    return [
+      disciplina?.curso || "",
+      disciplina?.semestre || "",
+      disciplina?.componenteCurricular || "",
+      disciplina?.ch || "",
+      disciplina?.natureza || "",
+      disciplina?.codigo || "",
+      docente?.nome || "",
+      a.diasSemana.join(","),
+      a.horarioInicio,
+      a.horarioFim,
+    ].join(",")
+  })
+
+  return [header, ...rows].join("\n")
+}

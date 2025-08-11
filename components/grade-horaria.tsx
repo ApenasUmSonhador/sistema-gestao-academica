@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Label } from "@/components/ui/label"
 import { Calendar, Download, Filter } from "lucide-react"
-import { useStore } from "@/lib/store"
+import { useStore, exportarAlocacoesParaCSV } from "@/lib/store"
 
 export function GradeHoraria() {
   const { disciplinas, docentes, cursos, alocacoes } = useStore()
@@ -81,8 +81,21 @@ export function GradeHoraria() {
   }
 
   const exportarGrade = () => {
-    // Funcionalidade de exportação seria implementada aqui
-    alert("Funcionalidade de exportação será implementada")
+    const csv = exportarAlocacoesParaCSV(
+      obterAlocacoesFiltradas(),
+      docentes,
+      disciplinas
+    )
+
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement("a")
+    link.href = url
+    link.download = "grade-horaria.csv"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
   }
 
   const alocacoesFiltradas = obterAlocacoesFiltradas()
