@@ -263,7 +263,7 @@ export function exportarAlocacoesParaCSV(alocacoes: Alocacao[], docentes: Docent
       disciplina?.natureza || "",
       disciplina?.codigo || "",
       docente?.nome || "",
-      a.diasSemana.join(","),
+      a.diasSemana.join(" - "),
       a.horarioInicio,
       a.horarioFim,
     ].join(",")
